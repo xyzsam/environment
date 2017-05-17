@@ -1,0 +1,15 @@
+[submodule "dircolors-solarized"]
+  path = terminal/dircolors-solarized
+  url = https://github.com/seebi/dircolors-solarized
+
+[submodule "gnome-terminal-colors-solarized"]
+  path = terminal/gnome-terminal-colors-solarized
+  url = https://github.com/Anthony25/gnome-terminal-colors-solarized
+
+[submodule "ctrlp.vim"]
+  path = vim/vim/bundle/ctrlp.vim
+  url = https://github.com/ctrlpvim/ctrlp.vim
+
+[submodule "tagbar"]
+  path = vim/vim/bundle/tagbar
+  url = https://github.com/majutsushi/tagbar
