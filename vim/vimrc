@@ -1,0 +1,78 @@
+syntax enable
+set background=dark
+colorscheme solarized
+set guifont=Monaco:h12
+set number
+set hidden  "" Enables switching between recently opened files with C-o or C-i.
+set hlsearch
+
+execute pathogen#infect()
+filetype plugin indent on
+
+set tabstop=2 softtabstop=2 expandtab
+set shiftwidth=2
+
+" For Tagbar.
+nmap <F8> :TagbarToggle<CR>
+set tags=tags;/
+nnoremap <leader>. :CtrlPTag<CR>
+
+if $TMUX == ''
+  set clipboard+=unnamed
+endif
+
+"" Join with upper line instead of lower line.
+nnoremap rJ ddpgkJ
+
+"" Set line length to 80 characters and highlight lines that are too long for
+"" all but ordinary text files.
+fun! SetTextWidth()
+  "" if &ft =~'tex'
+    set textwidth=80
+  ""endif
+endfun
+"" autocmd VimEnter * call SetTextWidth()
+
+" This call will be disabled by the autocmd but it must be here for the match
+" statement to work.
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"call matchadd('OverLength', '/\%101v.\+/')
+match OverLength /\%101v.\+/
+
+"" Highlight and remove trailing whitespace by pressing F5
+nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+highlight TrailingWhiteSpace ctermbg=red guibg=red
+"call matchadd('TrailingWhiteSpace', '/\s\+$/')
+2match TrailingWhiteSpace /\s\+$/
+
+"" Indentation rules, including 4-space indentation for multiple lines.
+"set sts=0 sw=2 ts=2
+set cindent
+set cinkeys-=0#  "" Prevents hash character from jumping to the beginning.
+"set cinoptions=(0,u0,U0
+
+augroup HighlightTrailingWhiteSpaceInInsertModeOnly
+  autocmd!
+  autocmd InsertLeave * highlight TrailingWhiteSpace ctermbg=red guibg=red
+  autocmd InsertEnter * highlight clear TrailingWhiteSpace
+augroup END
+
+augroup HighlightOverLengthInInsertModeOnly
+  autocmd InsertLeave * highlight clear OverLength
+  autocmd InsertEnter * highlight OverLength ctermbg=red ctermfg=white guibg=#59292
+augroup END
+
+set backspace=2
+
+function! CheckForCustomConfiguration()
+  " Check for .vim.custom in the directory containing the newly opened file
+  let custom_config_file = expand('%:p:h') . '/.vim.custom'
+  if filereadable(custom_config_file)
+    exe 'source' custom_config_file
+  endif
+endfunction
+
+"" au BufNewFile,BufRead * call CheckForCustomConfiguration()
+
+map <C-K> :py3f /home/samxi/local/bin/clang-format.py<cr>
+imap <C-K> <c-o>:py3f /home/samxi/local/bin/clang-format.py<cr>

@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/group/vlsiarch/samxi/past_projects/malloc/mallacc'
+let g:netrw_dirhist_2='/group/vlsiarch/samxi/past_projects/malloc/gperftools/build'
+let g:netrw_dirhist_3='/group/vlsiarch/samxi/past_projects/malloc/gperftools/build/benchmark'
+let g:netrw_dirhist_4='/group/vlsiarch/samxi/past_projects/malloc/gperftools/build'
+let g:netrw_dirhist_5='/group/vlsiarch/samxi/past_projects/malloc/gperftools/build/src'
