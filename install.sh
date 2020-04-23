@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+git submodule init
+git submodule update
+
 echo "Creating envsettings directory..."
 mkdir -p ~/.envsettings
 

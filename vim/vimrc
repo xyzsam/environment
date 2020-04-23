@@ -35,7 +35,7 @@ endfun
 
 " This call will be disabled by the autocmd but it must be here for the match
 " statement to work.
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+highlight OverLength ctermbg=red ctermfg=white guibg=red
 "call matchadd('OverLength', '/\%101v.\+/')
 match OverLength /\%101v.\+/
 
@@ -59,7 +59,7 @@ augroup END
 
 augroup HighlightOverLengthInInsertModeOnly
   autocmd InsertLeave * highlight clear OverLength
-  autocmd InsertEnter * highlight OverLength ctermbg=red ctermfg=white guibg=#59292
+  autocmd InsertEnter * highlight OverLength ctermbg=red ctermfg=white guibg=red
 augroup END
 
 set backspace=2
